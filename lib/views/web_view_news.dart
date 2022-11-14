@@ -3,6 +3,8 @@ import 'dart:async';
 import '../controllers/news_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import '../constants/color_constants.dart';
+import '../constants/size_constants.dart';
 
 class WebViewNews extends StatefulWidget {
   final String newsUrl;
@@ -23,13 +25,20 @@ class _WebViewNewsState extends State<WebViewNews> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          iconTheme: const IconThemeData(color: AppColors.white),
+          backgroundColor: AppColors.burgundy,
+          elevation: 3.0,
+          centerTitle: true,
+          toolbarHeight: Sizes.dimen_64,
           title: const Text('Web View'),
           actions: [
             IconButton(
-                onPressed: () async {
-                  controller.loadUrl(widget.newsUrl);
-                },
-                icon: const Icon(Icons.auto_fix_high_outlined))
+              tooltip: "Reload Page",
+              onPressed: () async {
+                controller.loadUrl(widget.newsUrl);
+              },
+              icon: const Icon(Icons.refresh_outlined),
+            )
           ],
         ),
         body: WebView(

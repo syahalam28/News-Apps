@@ -18,6 +18,8 @@ class NewsController extends GetxController {
   ScrollController scrollController = ScrollController();
   RxBool articleNotFound = false.obs;
   RxBool isLoading = false.obs;
+  RxBool hasNextPage = true.obs;
+  Rx isLoadMoreRunning = false.obs;
   RxString cName = ''.obs;
   RxString country = ''.obs;
   RxString category = ''.obs;
@@ -39,7 +41,9 @@ class NewsController extends GetxController {
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
       isLoading.value = true;
+      // hasNextPage.value = false;
       getAllNews();
+      update();
     }
   }
 
@@ -53,10 +57,11 @@ class NewsController extends GetxController {
     }
     if (isLoading.value == true) {
       pageNum++;
+      print("Loading Aktif Crousel");
     } else {
       breakingNews = [];
 
-      pageNum.value = 2;
+      pageNum.value = 1;
     }
     // default language is set to English
     /// ENDPOINT
@@ -76,16 +81,22 @@ class NewsController extends GetxController {
     articleNotFound.value = false;
 
     if (!reload && isLoading.value == false) {
+      // Set Next Page Agar tidak tampil terlebih dahulu baru ketika ada loading tampilkan
+      print("Aktive reload and loading = false");
+      hasNextPage.value = true;
     } else {
       country.value = '';
       category.value = '';
     }
     if (isLoading.value == true) {
+      // pageNum += 1;
       pageNum++;
+      print("Loading Aktif News");
     } else {
       allNews = [];
 
-      pageNum.value = 2;
+      pageNum.value = 1;
+      print("Awal");
     }
     // ENDPOINT
     baseUrl = "https://newsapi.org/v2/top-headlines?pageSize=10&page=$pageNum&";
@@ -106,11 +117,12 @@ class NewsController extends GetxController {
       country.value = '';
       category.value = '';
       baseUrl =
-          "https://newsapi.org/v2/everything?q=$searchKey&from=2022-11-12&sortBy=popularity&apiKey=${NewsApiConstants.newsApiKey}";
+          "https://newsapi.org/v2/everything?q=$searchKey&from=$tanggal&sortBy=popularity&apiKey=${NewsApiConstants.newsApiKey}";
 
       //
     }
     print(baseUrl);
+
     // calling the API function and passing the URL here
     getAllNewsFromApi(baseUrl);
   }
@@ -165,6 +177,12 @@ class NewsController extends GetxController {
         if (isLoading.value == true) {
           // combining two list instances with spread operator
           allNews = [...allNews, ...newsData.articles];
+          if (newsData.articles.isNotEmpty) {
+            isLoadMoreRunning.value = true;
+          } else if (newsData.articles.isEmpty) {
+            hasNextPage.value = false;
+          }
+
           update();
         } else {
           if (newsData.articles.isNotEmpty) {

@@ -3,11 +3,12 @@ import '../constants/size_constants.dart';
 import 'package:flutter/material.dart';
 
 class NewsCard extends StatelessWidget {
-  final String imgUrl, title, desc, content, postUrl;
+  final String imgUrl, title, desc, content, postUrl, source;
 
   const NewsCard(
       {Key? key,
       required this.imgUrl,
+      required this.source,
       required this.desc,
       required this.title,
       required this.content,
@@ -64,11 +65,14 @@ class NewsCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(Sizes.dimen_6),
             child: Text(
-              desc,
+              "- " + source,
               maxLines: 2,
-              style: const TextStyle(color: Colors.black54, fontSize: 14),
+              style: const TextStyle(
+                  color: Colors.black87,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500),
             ),
-          )
+          ),
         ],
       ),
     );

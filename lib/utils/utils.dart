@@ -5,6 +5,8 @@ var listOfCountry = [
   {"name": "MEXICO", "code": "mx"},
   {"name": "United Arab Emirates", "code": "ae"},
   {"name": "New Zealand", "code": "nz"},
+  {"name": "Israel", "code": "il"},
+  {"name": "Indonesia", "code": "id"},
   {"name": "Australia", "code": "au"},
   {"name": "Canada", "code": "ca"},
 ];

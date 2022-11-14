@@ -122,16 +122,18 @@ Drawer sideDrawer(NewsController newsController) {
         ),
         const Divider(),
         ListTile(
-            trailing: const Icon(
-              Icons.done_sharp,
-              size: Sizes.dimen_28,
-              color: Colors.black,
-            ),
-            title: const Text(
-              "Done",
-              style: TextStyle(fontSize: Sizes.dimen_16, color: Colors.black),
-            ),
-            onTap: () => Get.back()),
+          onTap: () => Get.back(),
+          trailing: const Icon(
+            Icons.home,
+            size: Sizes.dimen_28,
+            color: AppColors.burgundy,
+          ),
+          title: const Text(
+            "Home",
+            style:
+                TextStyle(fontSize: Sizes.dimen_16, color: AppColors.burgundy),
+          ),
+        ),
       ],
     ),
   );
