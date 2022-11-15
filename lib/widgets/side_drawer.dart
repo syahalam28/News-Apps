@@ -1,4 +1,7 @@
 import 'package:http/http.dart';
+import 'package:news_project/main.dart';
+import 'package:news_project/utils/app_routes.dart';
+import 'package:news_project/views/home_page.dart';
 
 import '../constants/color_constants.dart';
 import '../constants/newsApi_constants.dart';
@@ -9,6 +12,7 @@ import '../utils/utils.dart';
 import '../widgets/dropdown_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../main.dart';
 
 Drawer sideDrawer(NewsController newsController) {
   return Drawer(
@@ -122,7 +126,8 @@ Drawer sideDrawer(NewsController newsController) {
         ),
         const Divider(),
         ListTile(
-          onTap: () => Get.back(),
+          // onTap: () => Get.back(closeOverlays: true),
+          onTap: () => Get.back(closeOverlays: true),
           trailing: const Icon(
             Icons.home,
             size: Sizes.dimen_28,

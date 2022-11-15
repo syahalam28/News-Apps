@@ -14,7 +14,7 @@ void main() {
 class MyApp extends StatelessWidget {
   // const MyApp({Key? key}) : super(key: key);
   MyApp({Key? key}) : super(key: key);
-  HomePage homePage = HomePage();
+  HomePage homePage = (HomePage());
 
   // This widget is the root of your application.
   @override
@@ -22,6 +22,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Izaaz News Application',
+
+      // theme: homePage.isSwitched ? Themes.darkTheme : Themes.appTheme,
+
       initialRoute: AppRoutes.initial,
       getPages: AppRoutes.routes,
     );
