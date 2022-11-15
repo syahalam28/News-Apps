@@ -30,7 +30,7 @@ class _WebViewNewsState extends State<WebViewNews> {
           elevation: 3.0,
           centerTitle: true,
           toolbarHeight: Sizes.dimen_64,
-          title: const Text('Web View'),
+          title: const Text('Octo News'),
           actions: [
             IconButton(
               tooltip: "Reload Page",
