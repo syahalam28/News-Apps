@@ -30,25 +30,45 @@ class NewsCard extends StatelessWidget {
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(Sizes.dimen_10),
                   topRight: Radius.circular(Sizes.dimen_10)),
-              child: Image.network(
-                imgUrl,
-                height: 200,
-                width: MediaQuery.of(context).size.width,
-                fit: BoxFit.fill,
-                // if the image is null
-                errorBuilder: (BuildContext context, Object exception,
-                    StackTrace? stackTrace) {
-                  return Card(
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    child: const SizedBox(
-                      height: 200,
-                      width: double.infinity,
-                      child: Icon(Icons.broken_image_outlined),
+              child: Stack(
+                children: [
+                  Image.network(
+                    imgUrl,
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    fit: BoxFit.fill,
+                    // if the image is null
+                    errorBuilder: (BuildContext context, Object exception,
+                        StackTrace? stackTrace) {
+                      return Card(
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        child: const SizedBox(
+                          height: 200,
+                          width: double.infinity,
+                          child: Icon(Icons.broken_image_outlined),
+                        ),
+                      );
+                    },
+                  ),
+                  Positioned(
+                    bottom: 8,
+                    right: 8,
+                    child: Card(
+                      elevation: 0,
+                      color: Theme.of(context).primaryColor.withOpacity(0.8),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 8),
+                        child: Text(
+                          source,
+                          style: Theme.of(context).textTheme.subtitle2,
+                        ),
+                      ),
                     ),
-                  );
-                },
+                  )
+                ],
               )),
           vertical15,
           Padding(

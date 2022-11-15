@@ -54,8 +54,8 @@ class _HomePageState extends State<HomePage> {
                 isSwitched = value,
                 print(isSwitched),
                 isSwitched == false
-                    ? Get.changeTheme(ThemeData.light())
-                    : Get.changeTheme(ThemeData.dark())
+                    ? Get.changeTheme(Themes.appTheme)
+                    : Get.changeTheme(Themes.darkTheme)
               }),
 
           // onChanged: (bool value) {isSwitched[value] = !isSwitched[value]},
