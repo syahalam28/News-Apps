@@ -10,7 +10,7 @@ class OnboardingPage extends StatelessWidget {
 
   final data = [
     CardPlanetData(
-      title: "Looking for fast and accurate information?",
+      title: "Looking for fast information",
       subtitle:
           "Get information from various countries based on the category you like",
       image: LottieBuilder.asset("assets/animation/bgawal.json"),
