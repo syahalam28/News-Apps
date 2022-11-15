@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Izaaz News Application',
-      theme: Themes.appTheme,
+      // theme: Themes.appTheme,
       // theme: homePage.isSwitched ? Themes.darkTheme : Themes.appTheme,
 
       initialRoute: AppRoutes.initial,
