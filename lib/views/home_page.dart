@@ -92,6 +92,7 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.only(left: Sizes.dimen_16),
                         child: TextField(
                           controller: searchController,
+                          style: const TextStyle(color: Colors.black),
                           textInputAction: TextInputAction.search,
                           decoration: const InputDecoration(
                               border: InputBorder.none,

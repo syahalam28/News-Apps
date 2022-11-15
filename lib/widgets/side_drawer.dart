@@ -73,6 +73,7 @@ Drawer sideDrawer(NewsController newsController) {
             for (int i = 0; i < listOfCountry.length; i++)
               drawerDropDown(
                 onCalled: () {
+                  newsController.channel.value = '';
                   newsController.country.value = listOfCountry[i]['code']!;
                   newsController.cName.value =
                       listOfCountry[i]['name']!.toUpperCase();
@@ -95,6 +96,7 @@ Drawer sideDrawer(NewsController newsController) {
             for (int i = 0; i < listOfCategory.length; i++)
               drawerDropDown(
                   onCalled: () {
+                    newsController.channel.value = '';
                     newsController.category.value = listOfCategory[i]['code']!;
                     newsController.getAllNews();
                   },
@@ -114,11 +116,10 @@ Drawer sideDrawer(NewsController newsController) {
               drawerDropDown(
                 onCalled: () {
                   newsController.channel.value = listOfNewsChannel[i]['code']!;
-                  newsController.getAllNews(
-                      channel: listOfNewsChannel[i]['code']);
+                  newsController.getAllNews();
                   newsController.cName.value = '';
                   newsController.category.value = '';
-                  newsController.update();
+                  newsController.getBreakingNews();
                 },
                 name: listOfNewsChannel[i]['name']!.toUpperCase(),
               )

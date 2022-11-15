@@ -71,13 +71,19 @@ class NewsController extends GetxController {
     baseUrl += country.isEmpty ? 'country=id&' : 'country=$country&';
     //baseApi += category.isEmpty ? '' : 'category=$category&';
     baseUrl += 'apiKey=${NewsApiConstants.newsApiKey}';
+    if (channel != '') {
+      country.value = '';
+      category.value = '';
+      baseUrl =
+          "https://newsapi.org/v2/top-headlines?sources=$channel&apiKey=${NewsApiConstants.newsApiKey}";
+    }
     print([baseUrl]);
     // calling the API function and passing the URL here
     getBreakingNewsFromApi(baseUrl);
   }
 
   // function to load and display all news and searched news on to UI
-  getAllNews({channel = '', searchKey = '', reload = false}) async {
+  getAllNews({searchKey = '', reload = false}) async {
     articleNotFound.value = false;
 
     if (!reload && isLoading.value == false) {
@@ -85,8 +91,8 @@ class NewsController extends GetxController {
       print("Aktive reload and loading = false");
       hasNextPage.value = true;
     } else {
-      country.value = '';
-      category.value = '';
+      // country.value = '';
+      // category.value = '';
     }
     if (isLoading.value == true) {
       // pageNum += 1;
@@ -116,6 +122,7 @@ class NewsController extends GetxController {
       print(tanggal);
       country.value = '';
       category.value = '';
+      cName.value = '';
       baseUrl =
           "https://newsapi.org/v2/everything?q=$searchKey&from=$tanggal&sortBy=popularity&apiKey=${NewsApiConstants.newsApiKey}";
 

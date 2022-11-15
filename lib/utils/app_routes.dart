@@ -1,5 +1,6 @@
 import 'package:get/route_manager.dart';
 import 'package:get/get.dart';
+import 'package:news_project/views/Login_page.dart';
 import '../views/home_page.dart';
 import '../views/onboarding_page.dart';
 
