@@ -23,7 +23,7 @@ Drawer sideDrawer(NewsController newsController) {
           builder: (controller) {
             return Container(
               decoration: const BoxDecoration(
-                  color: AppColors.burgundy,
+                  color: Color.fromARGB(66, 6, 5, 5),
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(Sizes.dimen_10),
                     bottomRight: Radius.circular(Sizes.dimen_10),
@@ -66,8 +66,8 @@ Drawer sideDrawer(NewsController newsController) {
         // Membuat tampilan dropdown
         ExpansionTile(
           title: const Text("Select Country"),
-          collapsedTextColor: AppColors.burgundy,
-          collapsedIconColor: AppColors.burgundy,
+          collapsedTextColor: Color.fromARGB(255, 51, 10, 15),
+          collapsedIconColor: Color.fromARGB(255, 51, 10, 15),
           children: <Widget>[
             // Melakukan perulangan berdasarkan list dari country pada json utils
             for (int i = 0; i < listOfCountry.length; i++)
@@ -86,8 +86,8 @@ Drawer sideDrawer(NewsController newsController) {
 
         /// For Selecting the Category
         ExpansionTile(
-          collapsedTextColor: AppColors.burgundy,
-          collapsedIconColor: AppColors.burgundy,
+          collapsedTextColor: Color.fromARGB(255, 51, 10, 15),
+          collapsedIconColor: Color.fromARGB(255, 51, 10, 15),
           iconColor: AppColors.burgundy,
           textColor: AppColors.burgundy,
           title: const Text("Select Category"),
@@ -105,8 +105,8 @@ Drawer sideDrawer(NewsController newsController) {
         /// For Selecting the Channel
         ExpansionTile(
           title: const Text("Select Channel"),
-          collapsedTextColor: AppColors.burgundy,
-          collapsedIconColor: AppColors.burgundy,
+          collapsedTextColor: Color.fromARGB(255, 51, 10, 15),
+          collapsedIconColor: Color.fromARGB(255, 51, 10, 15),
           iconColor: AppColors.burgundy,
           textColor: AppColors.burgundy,
           children: [
@@ -131,12 +131,14 @@ Drawer sideDrawer(NewsController newsController) {
           trailing: const Icon(
             Icons.home,
             size: Sizes.dimen_28,
-            color: AppColors.burgundy,
+            color: Color.fromARGB(255, 51, 10, 15),
           ),
           title: const Text(
             "Home",
-            style:
-                TextStyle(fontSize: Sizes.dimen_16, color: AppColors.burgundy),
+            style: TextStyle(
+              fontSize: Sizes.dimen_16,
+              color: Color.fromARGB(255, 51, 10, 15),
+            ),
           ),
         ),
       ],

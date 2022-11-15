@@ -25,12 +25,15 @@ class _WebViewNewsState extends State<WebViewNews> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          iconTheme: const IconThemeData(color: AppColors.white),
-          backgroundColor: AppColors.burgundy,
+          iconTheme: const IconThemeData(color: Colors.black),
+          backgroundColor: Colors.white,
           elevation: 3.0,
           centerTitle: true,
           toolbarHeight: Sizes.dimen_64,
-          title: const Text('Octo News'),
+          title: const Text(
+            'Octo News',
+            style: TextStyle(color: Colors.black),
+          ),
           actions: [
             IconButton(
               tooltip: "Reload Page",

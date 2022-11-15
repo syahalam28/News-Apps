@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 
 class Themes {
   static final appTheme = ThemeData(
-    primaryColor: AppColors.burgundy,
+    primaryColor: Color.fromARGB(255, 57, 67, 86),
     scaffoldBackgroundColor: AppColors.lightGrey,
     buttonTheme: const ButtonThemeData(buttonColor: AppColors.orangeWeb),
-    appBarTheme: const AppBarTheme(backgroundColor: AppColors.burgundy),
+    appBarTheme: const AppBarTheme(backgroundColor: Colors.blueAccent),
     colorScheme:
         ColorScheme.fromSwatch().copyWith(secondary: AppColors.orangeWeb),
   );
@@ -19,10 +19,10 @@ class Themes {
       brightness: Brightness.dark,
       cardColor: AppColors.lightGrey,
       errorColor: AppColors.lightGrey,
-      primaryColor: AppColors.lightGrey,
-      appBarTheme: const AppBarTheme(backgroundColor: Colors.black26),
+      primaryColor: Colors.white,
+      appBarTheme: const AppBarTheme(backgroundColor: Colors.black12),
       textTheme: GoogleFonts.poppinsTextTheme()
-          .apply(bodyColor: Colors.white)
+          .apply(bodyColor: Colors.black)
           .copyWith(subtitle1: TextStyle(color: Colors.black)),
       canvasColor: Colors.grey[800],
       hintColor: Colors.black);

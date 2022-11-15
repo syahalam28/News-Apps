@@ -344,7 +344,7 @@ class _HomePageState extends State<HomePage> {
                                   Container(
                                     padding: const EdgeInsets.only(
                                         top: 30, bottom: 40),
-                                    color: AppColors.burgundy,
+                                    color: Color.fromARGB(31, 38, 38, 38),
                                     child: Column(
                                       children: const [
                                         SizedBox(
@@ -354,7 +354,8 @@ class _HomePageState extends State<HomePage> {
                                           child: Text(
                                             'You have fetched all of the content',
                                             style: TextStyle(
-                                                color: AppColors.lightGrey),
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
                                           ),
                                         ),
                                       ],
