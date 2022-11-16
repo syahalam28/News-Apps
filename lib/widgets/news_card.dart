@@ -1,11 +1,20 @@
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+
+import 'package:news_project/controllers/authC.dart';
+import 'package:news_project/controllers/loginC.dart';
+
 import '../constants/ui_constants.dart';
 import '../constants/size_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_share/flutter_share.dart';
 
 class NewsCard extends StatelessWidget {
+// Method naviagte
+
   final String imgUrl, title, desc, content, postUrl, source;
 
-  const NewsCard(
+  NewsCard(
       {Key? key,
       required this.imgUrl,
       required this.source,
@@ -13,6 +22,12 @@ class NewsCard extends StatelessWidget {
       required this.title,
       required this.content,
       required this.postUrl});
+
+  final data = <NewsCard>{};
+  final authC = Get.put(AuthC());
+  final c = Get.find<LoginC>();
+  final auth = Get.find<AuthC>();
+  final box = GetStorage("favorites");
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +108,24 @@ class NewsCard extends StatelessWidget {
                   fontWeight: FontWeight.w500),
             ),
           ),
+          IconButton(
+              onPressed: () {
+                FlutterShare.share(title: title, text: desc, linkUrl: postUrl);
+              },
+              icon: Icon(Icons.share_outlined)),
+          // IconButton(
+          //     onPressed: () {
+          //       if (key == null) {
+          //         authC.favorites(imgUrl, title, source, postUrl);
+          //       }
+
+          //       // final alreadySaved = data.contains(NewsCard);
+          //     },
+          //     icon: Icon(
+          //       Icons.favorite_border_outlined,
+          //       color: Colors.red[900],
+          //     )),
+          // Text(box.read('dataFav') ?? "")
         ],
       ),
     );

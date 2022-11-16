@@ -44,6 +44,7 @@ class MyApp extends StatelessWidget {
 
             // initialRoute: AppRoutes.onBoard,
             home: authC.isAuth.isFalse ? OnboardingPage() : HomePage(),
+
             getPages: AppRoutes.routes,
           );
           // Obx(

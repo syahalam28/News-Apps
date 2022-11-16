@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 
 import 'package:get_storage/get_storage.dart';
+import 'package:news_project/utils/route_name.dart';
+import 'package:news_project/views/fav.dart';
 import 'package:news_project/views/home_page.dart';
 import 'package:news_project/views/web_view_news.dart';
+import 'package:restart_app/restart_app.dart';
 
 class AuthC extends GetxController {
   Map<String, String> _dataUser = {
@@ -10,6 +15,7 @@ class AuthC extends GetxController {
     'password': 'admin'
   };
   var isAuth = false.obs;
+  var isFavorite = false.obs;
 
   void dialogError(String msg) {
     Get.defaultDialog(title: "Something Wrong", middleText: msg);
@@ -26,17 +32,6 @@ class AuthC extends GetxController {
 
     // Get.to(() => WebViewNews(newsUrl: newsUrl));
   }
-
-  // Future<void> auto() async {
-  //   final box = GetStorage();
-  //   if (box.read("dataUser") != null) {
-  //     final data = box.read("dataUser") as Map<String, dynamic>;
-  //     login(data['email'], data['password'], data['rememberMe'], data['url']);
-  //     isAuth.value = true;
-  //   }
-
-  //   // Get.to(() => WebViewNews(newsUrl: newsUrl));
-  // }
 
 // Simpan Data Login di Local Storage sama seperti provider
   void login(
@@ -89,7 +84,25 @@ class AuthC extends GetxController {
     if (box.read('dataUser') != null) {
       box.erase();
     }
-    Get.to(() => HomePage());
+    Restart.restartApp(webOrigin: RouteName.home);
+    // Get.to(() => HomePage());
     isAuth.value = false;
+  }
+
+// Method Favorites
+  void favorites(
+    String imageUrl,
+    String title,
+    String source,
+    String newsUrl,
+  ) async {
+    final box = GetStorage('AppNameStorage');
+
+    await box.write("dataFav", {
+      "imageUrl": imageUrl,
+      "title": title,
+      "source": source,
+      "newsUrl": newsUrl
+    });
   }
 }

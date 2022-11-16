@@ -3,6 +3,7 @@ import 'package:news_project/controllers/authC.dart';
 import 'package:news_project/controllers/loginC.dart';
 import 'package:news_project/main.dart';
 import 'package:news_project/utils/app_routes.dart';
+import 'package:news_project/views/fav.dart';
 import 'package:news_project/views/home_page.dart';
 
 import '../constants/color_constants.dart';
@@ -145,6 +146,7 @@ Drawer sideDrawer(NewsController newsController) {
             ),
           ),
         ),
+
         const Divider(),
         c.isAuth.isFalse
             ? const Divider()
