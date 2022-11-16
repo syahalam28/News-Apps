@@ -1,5 +1,11 @@
 import 'dart:async';
 
+import 'package:get/get.dart';
+import 'package:news_project/controllers/authC.dart';
+import 'package:news_project/utils/route_name.dart';
+import 'package:news_project/views/home_page.dart';
+import 'package:restart_app/restart_app.dart';
+
 import '../controllers/news_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -17,6 +23,7 @@ class WebViewNews extends StatefulWidget {
 class _WebViewNewsState extends State<WebViewNews> {
   NewsController newsController = NewsController();
   late WebViewController controller;
+  final authC = Get.put(AuthC());
 
   // final Completer<WebViewController> controller =
   //     Completer<WebViewController>();
@@ -25,7 +32,7 @@ class _WebViewNewsState extends State<WebViewNews> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          iconTheme: const IconThemeData(color: Colors.black),
+          // iconTheme: const IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
           elevation: 3.0,
           centerTitle: true,
@@ -40,8 +47,23 @@ class _WebViewNewsState extends State<WebViewNews> {
               onPressed: () async {
                 controller.loadUrl(widget.newsUrl);
               },
-              icon: const Icon(Icons.refresh_outlined),
-            )
+              icon: const Icon(
+                Icons.refresh_outlined,
+                color: Colors.black,
+              ),
+            ),
+            IconButton(
+              tooltip: "Home",
+              onPressed: () {
+                //     Navigator.pushReplacement(
+                //  context,MaterialPageRoute(builder: (context) => HomePage()),);
+                Restart.restartApp(webOrigin: RouteName.home);
+              },
+              icon: const Icon(
+                Icons.newspaper_rounded,
+                color: Colors.black,
+              ),
+            ),
           ],
         ),
         body: WebView(

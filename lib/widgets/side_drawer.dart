@@ -1,4 +1,6 @@
 import 'package:http/http.dart';
+import 'package:news_project/controllers/authC.dart';
+import 'package:news_project/controllers/loginC.dart';
 import 'package:news_project/main.dart';
 import 'package:news_project/utils/app_routes.dart';
 import 'package:news_project/views/home_page.dart';
@@ -15,6 +17,7 @@ import 'package:get/get.dart';
 import '../main.dart';
 
 Drawer sideDrawer(NewsController newsController) {
+  final c = Get.find<AuthC>();
   return Drawer(
     backgroundColor: AppColors.lightGrey,
     child: ListView(
@@ -142,6 +145,18 @@ Drawer sideDrawer(NewsController newsController) {
             ),
           ),
         ),
+        const Divider(),
+        c.isAuth.isFalse
+            ? const Divider()
+            : FloatingActionButton(
+                backgroundColor: AppColors.burgundy,
+                // Ketika di click ambil fungsi logout dari class AuthC
+                onPressed: () => Get.find<AuthC>().logout(),
+                child: Icon(
+                  Icons.logout,
+                  color: AppColors.lightGrey,
+                ),
+              )
       ],
     ),
   );

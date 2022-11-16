@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:news_project/controllers/news_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:news_project/utils/app_routes.dart';
+import 'package:news_project/views/Login_page.dart';
 import 'package:news_project/widgets/customAppBar.dart';
 import 'package:news_project/widgets/news_card.dart';
 import 'package:news_project/widgets/side_drawer.dart';
@@ -13,6 +14,7 @@ import '../constants/ui_constants.dart';
 import 'package:flutter/foundation.dart';
 import '../views/web_view_news.dart';
 import '../utils/app_theme.dart';
+import 'package:get_storage/get_storage.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -168,7 +170,8 @@ class _HomePageState extends State<HomePage> {
                                       message: 'Top Headlines',
                                       child: InkWell(
                                         onTap: () => Get.to(() =>
-                                            WebViewNews(newsUrl: instance.url)),
+                                            LoginForm(newsUrl: instance.url)),
+                                        // WebViewNews(newsUrl: instance.url)),
                                         child: Stack(children: [
                                           ClipRRect(
                                             borderRadius:
