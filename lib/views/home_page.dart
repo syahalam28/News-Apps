@@ -167,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                                   try {
                                     return Banner(
                                       location: BannerLocation.topStart,
-                                      message: 'Top Headlines',
+                                      message: 'Exclusive',
                                       child: InkWell(
                                         onTap: () => Get.to(() =>
                                             LoginForm(newsUrl: instance.url)),

@@ -32,7 +32,7 @@ class _WebViewNewsState extends State<WebViewNews> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          // iconTheme: const IconThemeData(color: Colors.black),
+          iconTheme: const IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
           elevation: 3.0,
           centerTitle: true,
@@ -52,18 +52,22 @@ class _WebViewNewsState extends State<WebViewNews> {
                 color: Colors.black,
               ),
             ),
-            IconButton(
-              tooltip: "Home",
-              onPressed: () {
-                //     Navigator.pushReplacement(
-                //  context,MaterialPageRoute(builder: (context) => HomePage()),);
-                Restart.restartApp(webOrigin: RouteName.home);
-              },
-              icon: const Icon(
-                Icons.newspaper_rounded,
-                color: Colors.black,
-              ),
-            ),
+            authC.isAuth.isTrue
+                ? IconButton(
+                    tooltip: "Home",
+                    onPressed: () {
+                      // Navigator.pushReplacement(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => HomePage()),
+                      // );
+                      Restart.restartApp(webOrigin: RouteName.home);
+                    },
+                    icon: const Icon(
+                      Icons.newspaper_rounded,
+                      color: Colors.black,
+                    ),
+                  )
+                : Text("")
           ],
         ),
         body: WebView(

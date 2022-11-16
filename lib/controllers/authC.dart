@@ -20,12 +20,23 @@ class AuthC extends GetxController {
     final box = GetStorage();
     if (box.read("dataUser") != null) {
       final data = box.read("dataUser") as Map<String, dynamic>;
-      login(data['email'], data['password'], data['rememberMe'], data['url']);
+      login(data['email'], data['password'], data['rememberMe'], data["url"]);
       isAuth.value = true;
     }
 
     // Get.to(() => WebViewNews(newsUrl: newsUrl));
   }
+
+  // Future<void> auto() async {
+  //   final box = GetStorage();
+  //   if (box.read("dataUser") != null) {
+  //     final data = box.read("dataUser") as Map<String, dynamic>;
+  //     login(data['email'], data['password'], data['rememberMe'], data['url']);
+  //     isAuth.value = true;
+  //   }
+
+  //   // Get.to(() => WebViewNews(newsUrl: newsUrl));
+  // }
 
 // Simpan Data Login di Local Storage sama seperti provider
   void login(

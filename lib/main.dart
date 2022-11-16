@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:news_project/controllers/authC.dart';
 import 'package:news_project/controllers/loginC.dart';
 import 'package:news_project/views/Login_page.dart';
+import 'package:news_project/views/onboarding_page.dart';
 import './utils/app_routes.dart';
 import './utils/app_theme.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   final loginC = Get.put(LoginC());
   final authC = Get.put(AuthC());
+  // String? newsUrl;
   // const MyApp({Key? key}) : super(key: key);
   MyApp({Key? key}) : super(key: key);
   // HomePage homePage = (HomePage());
@@ -38,9 +40,10 @@ class MyApp extends StatelessWidget {
             theme: Themes.appTheme,
             // theme: homePage.isSwitched ? Themes.darkTheme : Themes.appTheme,
             // Melakukan pengecekan Login Jika auth true maka login berhasil jika tidak kembali ke halaman login
-            home: HomePage(),
+            // home: HomePage(),
 
-            // initialRoute: AppRoutes.homepage,
+            // initialRoute: AppRoutes.onBoard,
+            home: authC.isAuth.isFalse ? OnboardingPage() : HomePage(),
             getPages: AppRoutes.routes,
           );
           // Obx(
@@ -57,6 +60,7 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
+      // Isi return
     );
   }
 }

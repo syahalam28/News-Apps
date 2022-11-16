@@ -9,16 +9,16 @@ import './route_name.dart';
 
 class AppRoutes {
   AppRoutes._();
-  static const initial = '/login';
-  static const homepage = '/homepage';
+  static const initial = '/homepage';
+  static const onBoard = RouteName.onBoard;
   static final routes = [
-    // GetPage(
-    //     name: RouteName.login,
-    //     page: () => LoginForm(),
-    //     transition: Transition.fadeIn),
     GetPage(
         name: RouteName.home,
         page: () => HomePage(),
+        transition: Transition.fadeIn),
+    GetPage(
+        name: RouteName.onBoard,
+        page: () => OnboardingPage(),
         transition: Transition.fadeIn),
   ];
 }
