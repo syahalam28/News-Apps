@@ -118,15 +118,13 @@ class NewsCard extends StatelessWidget {
                   icon: Icon(Icons.share_outlined)),
               IconButton(
                   onPressed: () {
-                    if (key == null) {
-                      authC.favorites(imgUrl, title, source, postUrl);
-                    }
+                    authC.favorites(imgUrl, title, source, postUrl);
 
                     // final alreadySaved = data.contains(NewsCard);
                   },
                   icon: Icon(
-                    Icons.favorite,
-                    color: Colors.red[900],
+                    Icons.thumb_up,
+                    color: Colors.blueAccent,
                   )),
             ],
           )

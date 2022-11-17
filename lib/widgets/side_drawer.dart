@@ -19,6 +19,7 @@ import '../main.dart';
 
 Drawer sideDrawer(NewsController newsController) {
   final c = Get.find<AuthC>();
+  final authC = Get.put(AuthC());
   return Drawer(
     backgroundColor: AppColors.lightGrey,
     child: ListView(
@@ -146,22 +147,23 @@ Drawer sideDrawer(NewsController newsController) {
             ),
           ),
         ),
-        // ListTile(
-        //   // onTap: () => Get.back(closeOverlays: true),
-        //   onTap: () => Get.back(closeOverlays: true),
-        //   trailing: const Icon(
-        //     Icons.home,
-        //     size: Sizes.dimen_28,
-        //     color: Color.fromARGB(255, 51, 10, 15),
-        //   ),
-        //   title: const Text(
-        //     "Home",
-        //     style: TextStyle(
-        //       fontSize: Sizes.dimen_16,
-        //       color: Color.fromARGB(255, 51, 10, 15),
-        //     ),
-        //   ),
-        // ),
+
+        ListTile(
+          // onTap: () => Get.back(closeOverlays: true),
+          onTap: () => c.Readfavorites(),
+          trailing: const Icon(
+            Icons.thumb_up,
+            size: Sizes.dimen_28,
+            color: Color.fromARGB(255, 51, 10, 15),
+          ),
+          title: const Text(
+            "Home",
+            style: TextStyle(
+              fontSize: Sizes.dimen_16,
+              color: Color.fromARGB(255, 51, 10, 15),
+            ),
+          ),
+        ),
 
         const Divider(),
         c.isAuth.isFalse
