@@ -157,7 +157,7 @@ Drawer sideDrawer(NewsController newsController) {
             color: Color.fromARGB(255, 51, 10, 15),
           ),
           title: const Text(
-            "Home",
+            "Favorites",
             style: TextStyle(
               fontSize: Sizes.dimen_16,
               color: Color.fromARGB(255, 51, 10, 15),
