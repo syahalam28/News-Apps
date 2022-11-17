@@ -108,23 +108,28 @@ class NewsCard extends StatelessWidget {
                   fontWeight: FontWeight.w500),
             ),
           ),
-          IconButton(
-              onPressed: () {
-                FlutterShare.share(title: title, text: desc, linkUrl: postUrl);
-              },
-              icon: Icon(Icons.share_outlined)),
-          IconButton(
-              onPressed: () {
-                if (key == null) {
-                  authC.favorites(imgUrl, title, source, postUrl);
-                }
+          Row(
+            children: <Widget>[
+              IconButton(
+                  onPressed: () {
+                    FlutterShare.share(
+                        title: title, text: desc, linkUrl: postUrl);
+                  },
+                  icon: Icon(Icons.share_outlined)),
+              IconButton(
+                  onPressed: () {
+                    if (key == null) {
+                      authC.favorites(imgUrl, title, source, postUrl);
+                    }
 
-                // final alreadySaved = data.contains(NewsCard);
-              },
-              icon: Icon(
-                Icons.favorite_border_outlined,
-                color: Colors.red[900],
-              )),
+                    // final alreadySaved = data.contains(NewsCard);
+                  },
+                  icon: Icon(
+                    Icons.favorite,
+                    color: Colors.red[900],
+                  )),
+            ],
+          )
         ],
       ),
     );
