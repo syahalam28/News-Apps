@@ -104,5 +104,18 @@ class AuthC extends GetxController {
       "source": source,
       "newsUrl": newsUrl
     });
+    if (box.read("dataFav") != null) {
+      final data = box.read("dataFav") as Map<String, dynamic>;
+      MyFavorite(
+          imgUrl: data['imageUrl'],
+          source: data['source'],
+          title: data['title'],
+          postUrl: data['newsUrl']);
+      Get.to(() => MyFavorite(
+          imgUrl: data['imageUrl'],
+          source: data['source'],
+          title: data['title'],
+          postUrl: data['newsUrl']));
+    }
   }
 }

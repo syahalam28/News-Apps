@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
             // home: HomePage(),
 
             // initialRoute: AppRoutes.onBoard,
-            home: authC.isAuth.isFalse ? OnboardingPage() : HomePage(),
+            home: authC.isAuth.isFalse ? HomePage() : HomePage(),
 
             getPages: AppRoutes.routes,
           );
