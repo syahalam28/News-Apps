@@ -3,6 +3,7 @@ import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_project/controllers/authC.dart';
+import 'package:news_project/controllers/favoriteC.dart';
 import 'package:news_project/controllers/news_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:news_project/utils/app_routes.dart';
@@ -19,18 +20,20 @@ import '../utils/app_theme.dart';
 import 'package:get_storage/get_storage.dart';
 
 class MyFavorite extends StatelessWidget {
+  // FavoriteController favoriteController = Get.find<FavoriteController>();
   NewsController newsController = Get.put(NewsController());
   TextEditingController searchController = TextEditingController();
   bool isSwitched = false;
+  final favoritC = Get.find<FavoriteController>();
   final auth = Get.find<AuthC>();
   final box = GetStorage();
-  final String imgUrl, title, postUrl, source;
-  MyFavorite(
-      {Key? key,
-      required this.imgUrl,
-      required this.source,
-      required this.title,
-      required this.postUrl});
+  // final String imgUrl, title, postUrl, source;
+  // MyFavorite(
+  //     {Key? key,
+  //     required this.imgUrl,
+  //     required this.source,
+  //     required this.title,
+  //     required this.postUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -48,94 +51,102 @@ class MyFavorite extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            vertical10,
-            InkWell(
-                onTap: () => Get.to(() => WebViewNews(newsUrl: postUrl)),
-                child: Card(
-                  elevation: Sizes.dimen_4,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.all(Radius.circular(Sizes.dimen_10))),
-                  margin: const EdgeInsets.fromLTRB(
-                      Sizes.dimen_16, 0, Sizes.dimen_16, Sizes.dimen_16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(Sizes.dimen_10),
-                              topRight: Radius.circular(Sizes.dimen_10)),
-                          child: Stack(
-                            children: [
-                              Image.network(
-                                imgUrl,
-                                height: 200,
-                                width: MediaQuery.of(context).size.width,
-                                fit: BoxFit.fill,
-                                // if the image is null
-                                errorBuilder: (BuildContext context,
-                                    Object exception, StackTrace? stackTrace) {
-                                  return Card(
-                                    elevation: 0,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: const SizedBox(
+            ListView.builder(
+                shrinkWrap: true,
+                itemCount: favoritC.temp.length,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                      onTap: () => Get.to(
+                          () => WebViewNews(newsUrl: favoritC.temp[index][3])),
+                      child: Card(
+                        elevation: Sizes.dimen_4,
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(Sizes.dimen_10))),
+                        margin: const EdgeInsets.fromLTRB(
+                            Sizes.dimen_16, 0, Sizes.dimen_16, Sizes.dimen_16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(Sizes.dimen_10),
+                                    topRight: Radius.circular(Sizes.dimen_10)),
+                                child: Stack(
+                                  children: [
+                                    Image.network(
+                                      favoritC.temp[index][0],
                                       height: 200,
-                                      width: double.infinity,
-                                      child: Icon(Icons.broken_image_outlined),
+                                      width: MediaQuery.of(context).size.width,
+                                      fit: BoxFit.fill,
+                                      // if the image is null
+                                      errorBuilder: (BuildContext context,
+                                          Object exception,
+                                          StackTrace? stackTrace) {
+                                        return Card(
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: const SizedBox(
+                                            height: 200,
+                                            width: double.infinity,
+                                            child: Icon(
+                                                Icons.broken_image_outlined),
+                                          ),
+                                        );
+                                      },
                                     ),
-                                  );
-                                },
+                                    Positioned(
+                                      bottom: 8,
+                                      right: 8,
+                                      child: Card(
+                                        elevation: 0,
+                                        color: Theme.of(context)
+                                            .primaryColor
+                                            .withOpacity(0.8),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 8),
+                                          child: Text(
+                                            favoritC.temp[index][2],
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .subtitle2,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                )),
+                            vertical15,
+                            Padding(
+                              padding: const EdgeInsets.all(Sizes.dimen_6),
+                              child: Text(
+                                favoritC.temp[index][1],
+                                maxLines: 2,
+                                style: const TextStyle(
+                                    color: Colors.black87,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500),
                               ),
-                              Positioned(
-                                bottom: 8,
-                                right: 8,
-                                child: Card(
-                                  elevation: 0,
-                                  color: Theme.of(context)
-                                      .primaryColor
-                                      .withOpacity(0.8),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 8),
-                                    child: Text(
-                                      source,
-                                      style:
-                                          Theme.of(context).textTheme.subtitle2,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          )),
-                      vertical15,
-                      Padding(
-                        padding: const EdgeInsets.all(Sizes.dimen_6),
-                        child: Text(
-                          title,
-                          maxLines: 2,
-                          style: const TextStyle(
-                              color: Colors.black87,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(Sizes.dimen_6),
+                              child: Text(
+                                "- " + favoritC.temp[index][2],
+                                maxLines: 2,
+                                style: const TextStyle(
+                                    color: Colors.black87,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(Sizes.dimen_6),
-                        child: Text(
-                          "- " + source,
-                          maxLines: 2,
-                          style: const TextStyle(
-                              color: Colors.black87,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ],
-                  ),
-                ))
+                      ));
+                })
           ],
         ),
       ),

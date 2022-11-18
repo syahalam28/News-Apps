@@ -2,7 +2,10 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'package:news_project/controllers/authC.dart';
+import 'package:news_project/controllers/favoriteC.dart';
 import 'package:news_project/controllers/loginC.dart';
+import 'package:news_project/controllers/news_controller.dart';
+import 'package:news_project/models/article_model.dart';
 
 import '../constants/ui_constants.dart';
 import '../constants/size_constants.dart';
@@ -23,11 +26,14 @@ class NewsCard extends StatelessWidget {
       required this.content,
       required this.postUrl});
 
-  final data = <NewsCard>{};
+  // final data = <NewsCard>{};
+  NewsController newsController = Get.put(NewsController());
+  List<NewsCard> localStorage = <NewsCard>[];
+  final favC = Get.put(FavoriteController());
   final authC = Get.put(AuthC());
   final c = Get.find<LoginC>();
   final auth = Get.find<AuthC>();
-  final box = GetStorage("favorites");
+  // final box = GetStorage("favorites");
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +124,8 @@ class NewsCard extends StatelessWidget {
                   icon: Icon(Icons.share_outlined)),
               IconButton(
                   onPressed: () {
-                    authC.favorites(imgUrl, title, source, postUrl);
+                    // authC.favorites(imgUrl, title, source, postUrl);
+                    favC.addFav(imgUrl, title, source, postUrl);
 
                     // final alreadySaved = data.contains(NewsCard);
                   },
